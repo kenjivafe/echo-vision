@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+    --font-roboto-sans: "Roboto", sans-serif;
+    --font-roboto-mono: "Roboto", monospace;
+    --font-space-mono: "Space", monospace;
+}
+
+body {
+    color: #fff;
+    min-height: 100vh;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), 
+        url('../public/background.png') center no-repeat;
+    background-size: cover;
+}
+
+.form-label {
+    @apply block mb-2 text-xl font-semibold font-space-mono;
+}
+
+option {
+    @apply absolute left-0 w-full mt-2 overflow-hidden bg-gray-800 rounded-lg shadow-lg font-roboto-mono
+}
+
+@keyframes gradient-border {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .animate-gradient-border {
+    background-size: 200% 200%;
+    animation: gradient-border 3s infinite linear;
+  }
