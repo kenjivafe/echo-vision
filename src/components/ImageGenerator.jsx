@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { RingLoader } from "react-spinners";
 
 const ImageGenerator = () => {
   // state_variables
@@ -88,7 +89,7 @@ const ImageGenerator = () => {
                     onChange={handleChange}
                     placeholder="A cat with ice-cream"
                     required
-                    className="block w-full h-38 p-3 bg-transparent border-2 border-purple-400/60 focus-within:outline-0 focus:border-purple-500 rounded-lg font-roboto-mono"
+                    className="block w-full h-38 p-3 bg-transparent border-2 border-purple-500/80 focus-within:outline-0 focus:border-purple-500 rounded-lg font-roboto-mono"
                 ></textarea>
                 </div>
 
@@ -103,7 +104,7 @@ const ImageGenerator = () => {
                     name="style_preset"
                     value={payload.style_preset}
                     onChange={handleChange}
-                    className="block w-full p-3 bg-transparent border-2 rounded-lg border-purple-500/60 focus-within:outline-0 focus:border-purple-500 font-roboto-mono"
+                    className="block w-full p-3 bg-transparent border-2 rounded-lg border-purple-500/80 focus-within:outline-0 focus:border-purple-500 font-roboto-mono"
                 >
                     <option value="anime">Anime</option>
                     <option value="cinematic">Cinematic</option>
@@ -124,7 +125,7 @@ const ImageGenerator = () => {
                     name="output_format"
                     value={payload.output_format}
                     onChange={handleChange}
-                    className="block w-full p-3 bg-transparent border-2 rounded-lg border-purple-500/60 focus-within:outline-0 focus:border-purple-500 font-roboto-mono"
+                    className="block w-full p-3 bg-transparent border-2 rounded-lg border-purple-500/80 focus-within:outline-0 focus:border-purple-500 font-roboto-mono"
                 >
                     <option value="png">PNG</option>
                     <option value="jpeg">JPEG</option>
@@ -147,17 +148,23 @@ const ImageGenerator = () => {
 
             {/* generated image */}
             <div className="block">
-            <div className="content-center border-2 border-purple-500 rounded-md mx-auto lg:ms-auto overflow-clip w-[500px] h-[500px]">
+            <div className="content-center border-2 border-purple-500/80 rounded-md mx-auto lg:ms-auto overflow-clip w-[500px] h-[500px]">
                 {loading ? (
-                <p className="text-center font-roboto-mono">Loading...</p>
+                <div role="status" className="flex items-center justify-center gap-2">
+                        <span className="text text-purple-300 font-roboto-mono">Generating</span>
+                        <RingLoader
+                            color="#D8B4FE"
+                            size={30}
+                            />
+                </div>
                 ) : error ? (
-                <p className="text-center font-roboto-mono">
+                <p className="text-center font-roboto-mono text-amber-400">
                     Something went wrong, try again.
                 </p>
                 ) : imageSrc ? (
                 <img className="mx-auto" src={imageSrc} />
                 ) : (
-                <img src="/logo2.png" className="mx-auto w-50"></img>
+                <img src="/logo2.png" className="mx-auto w-20"></img>
                 )}
             </div>
             </div>
